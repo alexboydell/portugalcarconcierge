@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expat Car Concierge | Portugal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2a44;
+            --secondary: #c5a059;
+            --light: #f8f9fa;
+            --dark: #121b2b;
+            --accent: #e67e22;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+       .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+       .logo span { color: var(--secondary); }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+       .hero {
+            background: linear-gradient(rgba(26, 42, 68, 0.8), rgba(26, 42, 68, 0.8)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 5%;
+            text-align: center;
+        }
+
+       .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+       .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+       .btn {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+       .btn:hover { background: #d4b170; }
+
+        section { padding: 5rem 5%; }
+
+       .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+       .section-title h2 {
+            font-size: 2.25rem;
+            color: var(--primary);
+        }
+
+       .section-title div {
+            width: 50px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 1rem auto;
+        }
+
+       .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+       .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+       .card:hover { transform: translateY(-5px); }
+
+       .card h3 { color: var(--primary); margin-bottom: 1rem; }
+
+       .pricing-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th { background: var(--primary); color: white; }
+
+       .price { font-weight: 700; color: var(--secondary); font-size: 1.25rem; }
+
+       .compliance-box {
+            background: #eef2f7;
+            padding: 3rem;
+            border-left: 8px solid var(--primary);
+            margin-top: 3rem;
+        }
+
+       .compliance-box h3 { margin-bottom: 1rem; color: var(--primary); }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+       .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+           .hero h1 { font-size: 2rem; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">PORTUGAL<span>CARCARE</span></div>
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#compliance">Legal</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Your Car, Always Ready.</h1>
+    <p>Professional automotive concierge services for expats in Lisbon, Cascais, Setúbal, Comporta and surrounding areas. From mechanical preservation to white-glove legalization.</p>
+    <a href="#contact" class="btn">Book a Service</a>
+</section>
+
+<section id="services">
+    <div class="section-title">
+        <h2>Our Preservation Protocol</h2>
+        <div></div>
+    </div>
+    <div class="grid">
+        <div class="card">
+            <h3>Battery Management</h3>
+            <p>Smart trickle charging for indoor storage or high-capacity lithium reanimation for remote garages. We ensure your electronics remain stable during absence.</p>
+        </div>
+        <div class="card">
+            <h3>Tire Health</h3>
+            <p>Prevention of flat-spotting through PSI calibration and periodic rotation moves. We protect your rubber from the intense Portuguese UV index.</p>
+        </div>
+        <div class="card">
+            <h3>Mechanical Cycling</h3>
+            <p>Bi-weekly starts and thermodynamic stabilization. We reach full operating temperature to dissipate moisture and preserve engine seals.</p>
+        </div>
+    </div>
+</section>
+
+<section id="pricing" style="background: #f1f4f8;">
+    <div class="section-title">
+        <h2>Service Packages</h2>
+        <div></div>
+    </div>
+    <div class="pricing-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Service Level</th>
+                    <th>What's Included</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>The Check-In</strong></td>
+                    <td>Visual inspection, fluid levels, tire pressure & digital health report.</td>
+                    <td class="price">€65 / mo</td>
+                </tr>
+                <tr>
+                    <td><strong>Active Care</strong></td>
+                    <td>Bi-weekly engine starts, 20min drive, battery maintenance & basic wash.</td>
+                    <td class="price">€145 / mo</td>
+                </tr>
+                <tr>
+                    <td><strong>The Legalizer</strong></td>
+                    <td>Full import management (DAV, COC, IPO Type B) & license plate delivery.</td>
+                    <td class="price">From €450*</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="compliance">
+    <div class="section-title">
+        <h2>Bureaucracy Simplified</h2>
+        <div></div>
+    </div>
+    <div class="compliance-box">
+        <h3>2025/2026 Tax Updates</h3>
+        <p>Portugal's automotive tax landscape is shifting. We ensure you benefit from the latest reforms:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li><strong>2025 ISV Reform:</strong> Reductions of up to 60% on used EU imports under the new Table D rules.</li>
+            <li><strong>2026 IUC Transition:</strong> Unified road tax payments are moving to February for all residents. We manage your Finance Portal reminders to avoid penalties.</li>
+            <li><strong>PHEV Benefits:</strong> Up to 75% discounts on registration tax for eligible hybrids.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-title">
+        <h2>Request Peace of Mind</h2>
+        <div></div>
+    </div>
+    <form class="contact-form" action="https://formsubmit.co/ms4f46ng77@privaterelay.appleid.com" method="POST">
+        <input type="hidden" name="_subject" value="New Portugal CarCare Inquiry">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="thank-you.html">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="location" placeholder="Vehicle Location (Lisbon, Faro, etc.)" required>
+        <textarea name="message" rows="5" placeholder="How can we help your car?"></textarea>
+        <button type="submit" class="btn" style="width: 100%; cursor: pointer;">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2026 Portugal CarCare Concierge. All rights reserved.</p>
+    <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.7;">*Fees do not include official ISV/IUC taxes or IMT charges.</p>
+</footer>
+
+</body>
+</html>
