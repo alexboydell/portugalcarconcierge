@@ -340,7 +340,7 @@
             z-index: 1;
             padding: 6rem 5%;
             max-width: 900px;
-            text-align: center;
+            text-align: left;
         }
 
         .hero-badge {
@@ -376,9 +376,18 @@
         .hero p {
             font-size: 1.15rem;
             max-width: 650px;
-            margin: 0 auto 2.5rem;
+            margin: 0 0 2.5rem;
             opacity: 0.85;
             line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-supporting {
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 0 2rem;
+            opacity: 0.6;
+            line-height: 1.7;
             font-weight: 300;
         }
 
@@ -387,7 +396,9 @@
             font-weight: 500;
             letter-spacing: 0.3px;
             opacity: 0.6;
+            margin-top: 7rem;
             margin-bottom: 2rem;
+            text-align: center;
         }
 
         .hero-icons {
@@ -421,8 +432,9 @@
         .hero-ctas {
             display: flex;
             gap: 1rem;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
+            margin-bottom: 2.5rem;
         }
 
         .btn {
@@ -1413,7 +1425,7 @@
         <a href="#pricing" onclick="document.querySelector('nav').classList.remove('active')">Pricing</a>
         <a href="#compliance" onclick="document.querySelector('nav').classList.remove('active')">Tax Guide</a>
         <a href="#faq" onclick="document.querySelector('nav').classList.remove('active')">FAQ</a>
-        <a href="#contact" class="nav-cta" onclick="document.querySelector('nav').classList.remove('active')">Request a Care Plan</a>
+        <a href="#contact" class="nav-cta" onclick="document.querySelector('nav').classList.remove('active')">Get a Care Plan</a>
     </nav>
 </header>
 
@@ -1429,26 +1441,26 @@
 
     <div class="hero-content">
         <div class="hero-badge">Automotive Concierge for Expats</div>
-        <h2><span class="highlight">Expert Guardianship</span> for Your Vehicle.</h2>
-        <p>We don't just watch your car, we keep it alive. From regular engine run-cycles to tire pressure management and battery health monitoring, our team ensures your vehicle remains mechanically perfect in your private garage.</p>
+        <h2><span class="highlight">Expert Guardianship for Your Vehicle</span> Even When You're Away</h2>
+        <p>Your car is professionally maintained, monitored, and protected in your private garage by trusted local experts, so it's always ready when you return. From battery health and tire care to regular engine run cycles and security checks, we quietly handle the details you can't be there for.</p>
+        <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary" aria-label="Get a personalized care plan">Get a Personalized Care Plan</a>
+            <a href="#pricing" class="btn btn-ghost">View Service Packages</a>
+        </div>
         <div class="hero-locations">Serving Private Garages in: Lisbon &bull; Cascais &bull; Estoril &bull; Setúbal &bull; Comporta</div>
         <div class="hero-icons">
             <div class="hero-icon-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="7" width="12" height="10" rx="1"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="10" y1="7" x2="10" y2="4"/><line x1="14" y1="7" x2="14" y2="4"/></svg>
-                <span>Battery</span>
+                <span>Battery Care</span>
             </div>
             <div class="hero-icon-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                <span>Tires</span>
+                <span>Tire Management</span>
             </div>
             <div class="hero-icon-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>Security</span>
+                <span>Vehicle Security</span>
             </div>
-        </div>
-        <div class="hero-ctas">
-            <a href="#contact" class="btn btn-primary" aria-label="Request a care plan">Request a Care Plan</a>
-            <a href="#pricing" class="btn btn-ghost">View Service Packages</a>
         </div>
     </div>
 </section>
