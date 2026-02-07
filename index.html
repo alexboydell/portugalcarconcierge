@@ -73,7 +73,7 @@
       "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1200",
       "@id": "https://portugalcarcare.com",
       "url": "https://portugalcarcare.com",
-      "priceRange": "€65 - €450",
+      "priceRange": "€65 - €450+",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Lisbon",
@@ -86,26 +86,11 @@
         "longitude": -9.1393
       },
       "areaServed": [
-        {
-          "@type": "City",
-          "name": "Lisbon"
-        },
-        {
-          "@type": "City",
-          "name": "Cascais"
-        },
-        {
-          "@type": "City",
-          "name": "Estoril"
-        },
-        {
-          "@type": "City",
-          "name": "Setúbal"
-        },
-        {
-          "@type": "City",
-          "name": "Comporta"
-        }
+        { "@type": "City", "name": "Lisbon" },
+        { "@type": "City", "name": "Cascais" },
+        { "@type": "City", "name": "Estoril" },
+        { "@type": "City", "name": "Setúbal" },
+        { "@type": "City", "name": "Comporta" }
       ],
       "description": "Professional automotive concierge services for expats in Portugal. We provide battery management, tire health maintenance, mechanical cycling, IPO inspections, and vehicle legalization services in Lisbon, Cascais, Estoril, Setúbal, Comporta and surrounding areas.",
       "hasOfferCatalog": {
@@ -152,16 +137,6 @@
               "description": "Full import management (DAV, COC, IPO Type B) & license plate delivery"
             },
             "price": "450",
-            "priceCurrency": "EUR"
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "IPO Liaison",
-              "description": "Pre-check for fails, transport to center, and certification"
-            },
-            "price": "95",
             "priceCurrency": "EUR"
           }
         ]
@@ -211,15 +186,28 @@
     }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
     <style>
         :root {
             --primary: #1a2a44;
+            --primary-light: #243656;
             --secondary: #c5a059;
+            --secondary-light: #d4b170;
             --light: #f8f9fa;
             --dark: #121b2b;
             --accent: #e67e22;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --text-muted: #6b7a90;
+            --surface: #ffffff;
+            --surface-alt: #f1f4f8;
+            --radius: 16px;
+            --radius-sm: 8px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.1);
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -228,34 +216,53 @@
             padding: 0;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: var(--light);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Header ── */
         header {
             background: var(--primary);
             color: white;
-            padding: 1rem 5%;
+            padding: 0 5%;
+            height: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-       .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -1px;
+        .logo {
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
         }
+        .logo span { color: var(--secondary); }
 
-       .logo span { color: var(--secondary); }
-
-       .mobile-menu-toggle {
+        .mobile-menu-toggle {
             display: none;
             background: none;
             border: none;
@@ -263,28 +270,52 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
+            line-height: 1;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         nav a {
-            color: white;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            margin-left: 2rem;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        nav a:hover {
+            color: white;
+            background: rgba(255,255,255,0.08);
         }
 
-       .hero {
+        nav .nav-cta {
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        nav .nav-cta:hover {
+            background: var(--secondary-light);
+            color: var(--primary);
+        }
+
+        /* ── Hero ── */
+        .hero {
             color: white;
-            text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 600px;
+            min-height: 92vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-       .hero-bg {
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -295,223 +326,1086 @@
             z-index: -2;
         }
 
-       .hero::before {
+        .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(26, 42, 68, 0.8);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(18, 27, 43, 0.92) 0%, rgba(26, 42, 68, 0.78) 100%);
             z-index: -1;
         }
 
-       .hero-content {
+        .hero-content {
             position: relative;
             z-index: 1;
-            padding: 8rem 5%;
-            max-width: 1200px;
-        }
-
-       .hero h1, .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-       .hero p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-
-       .btn {
-            background: var(--secondary);
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 4px;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-       .btn:hover { background: #d4b170; }
-
-        section { padding: 5rem 5%; }
-
-       .section-title {
+            padding: 6rem 5%;
+            max-width: 900px;
             text-align: center;
-            margin-bottom: 3rem;
         }
 
-       .section-title h2 {
-            font-size: 2.25rem;
+        .hero-badge {
+            display: inline-block;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: var(--secondary);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .hero h2 .highlight {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.85;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-icon-item svg {
+            width: 28px;
+            height: 28px;
+            color: var(--secondary);
+        }
+
+        .hero-icon-item span {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
             color: var(--primary);
         }
-
-       .section-title div {
-            width: 50px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 1rem auto;
+        .btn-primary:hover {
+            background: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(197, 160, 89, 0.3);
         }
 
-       .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .btn-ghost {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+        .btn-ghost:hover {
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
         }
 
-       .card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
+        .btn-full {
+            width: 100%;
+            justify-content: center;
         }
 
-       .card:hover { transform: translateY(-5px); }
+        /* ── Trust Bar ── */
+        .trust-bar {
+            background: var(--primary);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 1.25rem 5%;
+        }
 
-       .card h3 { color: var(--primary); margin-bottom: 1rem; }
-
-       .pricing-table {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .trust-bar-inner {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        table {
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        .trust-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        /* ── Sections ── */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            color: var(--secondary);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* ── Visitor Segments ── */
+        .segments {
+            background: var(--surface);
+        }
+
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .segment-card {
+            background: var(--surface);
+            border: 1.5px solid #e8ecf1;
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .segment-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .segment-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+        }
+
+        .segment-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--secondary);
+        }
+
+        .segment-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .segment-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ── Services ── */
+        .services {
+            background: var(--surface-alt);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(197, 160, 89, 0.2);
+        }
+
+        .service-card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(197, 160, 89, 0.04) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--secondary);
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ── Pricing ── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1.5px solid #e8ecf1;
+            position: relative;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--secondary);
+            box-shadow: 0 12px 48px rgba(197, 160, 89, 0.15);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-amount {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1rem 0 0.25rem;
+        }
+
+        .pricing-amount span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .pricing-period {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+
+        .pricing-features li {
+            padding: 0.4rem 0;
+            font-size: 0.875rem;
+            color: #4a5568;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+
+        .pricing-features li svg {
+            width: 16px;
+            height: 16px;
+            color: var(--secondary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+
+        .pricing-card .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid #d1d8e0;
+        }
+        .pricing-card .btn-outline:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            background: rgba(197, 160, 89, 0.04);
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Social Proof ── */
+        .testimonials {
+            background: var(--primary);
+            color: white;
+        }
+
+        .testimonials .section-label {
+            color: var(--secondary);
+        }
+        .testimonials .section-title {
+            color: white;
+        }
+        .testimonials .section-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-stars {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-location {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── Compliance ── */
+        .compliance {
+            background: var(--surface);
+        }
+
+        .compliance-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .compliance-text h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .compliance-text h3:first-child {
+            margin-top: 0;
+        }
+
+        .compliance-text p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        .compliance-text ul {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .compliance-text ul li {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            color: #4a5568;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .compliance-text ul li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+        }
+
+        .iuc-table {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid #e8ecf1;
+        }
+
+        .iuc-table table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        th, td {
-            padding: 1.5rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th { background: var(--primary); color: white; }
-
-       .price { font-weight: 700; color: var(--secondary); font-size: 1.25rem; }
-
-       .compliance-box {
-            background: #eef2f7;
-            padding: 3rem;
-            border-left: 8px solid var(--primary);
-            margin-top: 3rem;
-        }
-
-       .compliance-box h3 { margin-bottom: 1rem; color: var(--primary); }
-
-        footer {
-            background: var(--dark);
+        .iuc-table th {
+            background: var(--primary);
             color: white;
-            padding: 3rem 5%;
-            text-align: center;
+            padding: 1rem 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: left;
         }
 
-       .contact-form {
-            max-width: 600px;
+        .iuc-table td {
+            padding: 0.9rem 1.25rem;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #f0f2f5;
+            color: #4a5568;
+        }
+
+        .iuc-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .iuc-table .year-badge {
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--secondary);
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.82rem;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.08) 0%, rgba(197, 160, 89, 0.08) 100%);
+            border: 1px solid rgba(230, 126, 34, 0.2);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .alert-box svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .alert-box p {
+            font-size: 0.85rem;
+            color: #5a4a3a;
+            line-height: 1.6;
+        }
+
+        /* ── Contact ── */
+        .contact {
+            background: var(--surface-alt);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .contact-detail svg {
+            width: 20px;
+            height: 20px;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1.5px solid #e0e4ea;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background: var(--surface);
+            color: var(--dark);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b7a90' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* ── FAQ ── */
+        .faq {
+            background: var(--surface);
+        }
+
+        .faq-list {
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        input, textarea {
+        .faq-item {
+            border: 1px solid #e8ecf1;
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: #d1d8e0;
+        }
+
+        .faq-question {
             width: 100%;
-            padding: 1rem;
+            background: none;
+            border: none;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: left;
+            gap: 1rem;
+        }
+
+        .faq-question svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 1.5rem 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        /* ── About (SEO) ── */
+        .about-seo {
+            background: var(--surface-alt);
+            padding: 5rem 5%;
+        }
+
+        .about-seo-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-seo h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .about-seo h3 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .about-seo p {
+            color: #4a5568;
+            font-size: 0.92rem;
+            line-height: 1.8;
             margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        }
+
+        .about-seo ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .about-seo ul li {
+            color: #4a5568;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            margin-bottom: 0.25rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 0.3rem 0;
+            transition: var(--transition);
+        }
+        .footer-col a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+        }
+
+        /* ── WhatsApp Sticky ── */
+        .whatsapp-sticky {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .whatsapp-sticky:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+        }
+        .whatsapp-sticky svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-           .hero {
-                min-height: 500px;
+            .hero {
+                min-height: 85vh;
             }
-
-           .hero-content {
+            .hero-content {
                 padding: 4rem 5%;
             }
+            .hero h2 {
+                font-size: 2.25rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
 
-           .hero h1, .hero h2 { font-size: 2rem; }
-
-           .mobile-menu-toggle { display: block; }
+            .mobile-menu-toggle { display: block; }
             nav {
                 display: none;
                 position: absolute;
                 top: 100%;
-                left: 0;
-                right: 0;
+                left: 0; right: 0;
                 background: var(--primary);
                 flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                padding: 0.5rem 0;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+                border-top: 1px solid rgba(255,255,255,0.06);
             }
             nav.active { display: flex; }
             nav a {
-                margin: 0;
-                padding: 1rem 5%;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+                padding: 0.85rem 5%;
+                border-radius: 0;
+            }
+            nav .nav-cta {
+                margin: 0.5rem 5%;
+                text-align: center;
+                border-radius: var(--radius-sm);
+            }
+
+            .segments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compliance-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .trust-bar-inner {
+                gap: 1.25rem;
+            }
+            .trust-item {
+                font-size: 0.75rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.85rem;
+            }
+            .hero-ctas {
+                flex-direction: column;
+            }
+            .hero-ctas .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .trust-bar-inner {
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
             }
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('.contact-form');
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const formData = new FormData(form);
-                const submitButton = form.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-
-                // Show loading state
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-
-                fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Redirect to thank you page
-                        window.location.href = 'thank-you.html';
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
-                })
-                .catch(error => {
-                    alert('Oops! There was a problem submitting your form. Please try again.');
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 
+<!-- Header -->
 <header role="banner">
-    <h1 class="logo">PORTUGAL<span>CARCARE</span></h1>
-    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('active')">☰</button>
+    <div class="logo">PORTUGAL<span>CARCARE</span></div>
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" onclick="document.querySelector('nav').classList.toggle('active')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
     <nav role="navigation" aria-label="Main navigation">
         <a href="#services" onclick="document.querySelector('nav').classList.remove('active')">Services</a>
         <a href="#pricing" onclick="document.querySelector('nav').classList.remove('active')">Pricing</a>
-        <a href="#about" onclick="document.querySelector('nav').classList.remove('active')">About</a>
-        <a href="#contact" onclick="document.querySelector('nav').classList.remove('active')">Contact</a>
+        <a href="#compliance" onclick="document.querySelector('nav').classList.remove('active')">Tax Guide</a>
+        <a href="#faq" onclick="document.querySelector('nav').classList.remove('active')">FAQ</a>
+        <a href="#contact" class="nav-cta" onclick="document.querySelector('nav').classList.remove('active')">Request a Care Plan</a>
     </nav>
 </header>
 
+<!-- Hero -->
 <section class="hero" role="main">
     <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920"
          alt="Luxury sports car on coastal highway in Portugal"
@@ -522,175 +1416,508 @@
          loading="eager">
 
     <div class="hero-content">
-        <h2>Your Car, Always Ready.</h2>
-        <p>Professional automotive concierge services for expats in Lisbon, Cascais, Estoril, Setúbal, Comporta and surrounding areas. From mechanical preservation to white-glove legalization.</p>
-        <a href="#contact" class="btn" aria-label="Book an inspection with Portugal CarCare">Book an Inspection</a>
-    </div>
-</section>
-
-<section id="services" aria-labelledby="services-heading">
-    <div class="section-title">
-        <h2 id="services-heading">Our Preservation Protocol</h2>
-        <div></div>
-    </div>
-    <div class="grid">
-        <div class="card">
-            <h3>Battery Management</h3>
-            <p>Smart trickle charging for indoor storage or high-capacity lithium reanimation for remote garages. We ensure your electronics remain stable during absence.</p>
+        <div class="hero-badge">Automotive Concierge for Expats</div>
+        <h2><span class="highlight">Expert Guardianship for Your Vehicle.</span><br>Hands-On Care While You're Away.</h2>
+        <p>White-glove mechanical preservation and compliance delivered directly to your private garage. Our English-speaking team manages your vehicle's health across Lisbon, Cascais, Estoril, Setúbal, and Comporta, ensuring it remains in pristine condition for your return.</p>
+        <div class="hero-icons">
+            <div class="hero-icon-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="7" width="12" height="10" rx="1"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="10" y1="7" x2="10" y2="4"/><line x1="14" y1="7" x2="14" y2="4"/></svg>
+                <span>Battery</span>
+            </div>
+            <div class="hero-icon-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                <span>Tires</span>
+            </div>
+            <div class="hero-icon-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Security</span>
+            </div>
         </div>
-        <div class="card">
-            <h3>Tire Health</h3>
-            <p>Prevention of flat-spotting through PSI calibration and periodic rotation moves. We protect your tires from the intense Portuguese UV index.</p>
-        </div>
-        <div class="card">
-            <h3>Mechanical Cycling</h3>
-            <p>Bi-weekly starts and thermodynamic stabilization. We reach full operating temperature to dissipate moisture and preserve engine seals.</p>
+        <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary" aria-label="Request a care plan">Request a Care Plan</a>
+            <a href="#pricing" class="btn btn-ghost">View Service Packages</a>
         </div>
     </div>
 </section>
 
-<section id="pricing" style="background: #f1f4f8;">
-    <div class="section-title">
-        <h2>Service Packages</h2>
-        <div></div>
+<!-- Trust Bar -->
+<div class="trust-bar">
+    <div class="trust-bar-inner">
+        <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            100% English-Speaking
+        </div>
+        <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Specialized in Expat Needs
+        </div>
+        <div class="trust-item">
+            <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Digital Health Reports
+        </div>
     </div>
-    <div class="pricing-table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Service Level</th>
-                    <th>What's Included</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>The Check-In</strong></td>
-                    <td>Visual inspection, fluid levels, tire pressure & digital health report.</td>
-                    <td class="price">From €65 / mo</td>
-                </tr>
-                <tr>
-                    <td><strong>Active Care</strong></td>
-                    <td>Bi-weekly engine starts, 20min drive, battery maintenance & basic wash.</td>
-                    <td class="price">From €145 / mo</td>
-                </tr>
-                <tr>
-                    <td><strong>The Legalizer</strong></td>
-                    <td>Full import management (DAV, COC, IPO Type B) & license plate delivery.</td>
-                    <td class="price">From €450*</td>
-                </tr>
-                <tr>
-                    <td><strong>IPO Liaison</strong></td>
-                    <td>Pre-check for fails, transport to center, and certification.</td>
-                    <td class="price">From €95</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+</div>
 
-<section id="compliance">
-    <div class="section-title">
-        <h2>Bureaucracy Simplified</h2>
-        <div></div>
-    </div>
-    <div class="compliance-box">
-        <h3>2025/2026 Tax Updates</h3>
-        <p>Portugal's automotive tax landscape is shifting. We ensure you benefit From the latest reforms:</p>
-        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-            <li><strong>2025 ISV Reform:</strong> Reductions of up to 60% on used EU imports under the new Table D rules.</li>
-            <li><strong>2026 IUC Transition:</strong> Unified road tax payments are moving to February for all residents. We manage your Finance Portal reminders to avoid penalties.</li>
-            <li><strong>PHEV Benefits:</strong> Up to 75% discounts on registration tax for eligible hybrids.</li>
-        </ul>
+<!-- Visitor Segments -->
+<section class="segments" id="segments">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">How Can We Help?</div>
+            <h2 class="section-title">Choose Your Situation</h2>
+            <p class="section-subtitle">Every expat's automotive needs are different. Tell us where you are in your journey.</p>
+        </div>
+        <div class="segments-grid">
+            <a href="#pricing" class="segment-card fade-up">
+                <div class="segment-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h3>Just Arrived?</h3>
+                <p>Need to legalize a foreign-plated vehicle, get Portuguese plates, or navigate ISV and IUC taxes for the first time.</p>
+            </a>
+            <a href="#pricing" class="segment-card fade-up">
+                <div class="segment-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Traveling Soon?</h3>
+                <p>Leaving Portugal for weeks or months? Your car needs active maintenance to prevent battery death, flat-spots, and seal degradation.</p>
+            </a>
+            <a href="#pricing" class="segment-card fade-up">
+                <div class="segment-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>IPO or Tax Deadline?</h3>
+                <p>Mandatory inspection coming up? IUC due date approaching? We handle the entire process including pre-checks and Finanças portal payments.</p>
+            </a>
+        </div>
     </div>
 </section>
 
-<section id="contact">
-    <div class="section-title">
-        <h2>Request Peace of Mind</h2>
-        <div></div>
+<!-- Services -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">The Preservation Protocol</div>
+            <h2 class="section-title">Three Pillars of Vehicle Protection</h2>
+            <p class="section-subtitle">Comprehensive care designed for Portugal's coastal climate and complex regulations.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-up">
+                <div class="service-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Asset Preservation</h3>
+                <p>Smart trickle charging prevents battery failure. PSI calibration and UV-exposure monitoring protects tires from Portugal's intense Atlantic sun. Bi-weekly thermodynamic cycling reaches full operating temperature to dissipate moisture and preserve engine seals against salt-air corrosion.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18"/><path d="M5.5 7.5L12 3l6.5 4.5"/><path d="M5.5 16.5L12 21l6.5-4.5"/><path d="M2 12h20"/></svg>
+                </div>
+                <h3>Bureaucracy Management</h3>
+                <p>Full import legalization including DAV registration, COC documentation, and IPO Type B inspections. We manage your ISV calculations, IUC payments through the Finanças portal, and ensure you benefit from the latest 2025/2026 tax reforms including PHEV incentives.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <h3>White-Glove Logistics</h3>
+                <p>Mobile concierge that comes to your villa, apartment garage, or private parking. No need to bring your car anywhere. We bring the preservation protocol to you across Lisbon, Cascais, Estoril, Setúbal, and Comporta. Digital health reports delivered after every visit.</p>
+            </div>
+        </div>
     </div>
-    <form class="contact-form" action="https://formspree.io/f/xbdknbwn" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="text" name="location" placeholder="Vehicle Location (Lisbon, Cascais, Estoril, Setúbal, Comporta, etc.)" required>
-        <textarea rows="5" name="message" placeholder="How can we help your car?"></textarea>
-        <input type="hidden" name="_subject" value="New CarCare Inquiry">
-        <button type="submit" class="btn" style="width: 100%; cursor: pointer;">Send Message</button>
-    </form>
 </section>
 
-<!-- AI-Optimized Content Section for ChatGPT, Gemini, Perplexity -->
-<section id="about" style="background: white; padding: 5rem 5%; max-width: 1200px; margin: 0 auto;">
-    <article>
-        <h2 style="color: var(--primary); margin-bottom: 2rem; font-size: 2rem;">About Portugal CarCare Concierge</h2>
+<!-- Pricing -->
+<section id="pricing" style="background: var(--surface-alt);">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">Transparent Pricing</div>
+            <h2 class="section-title">Service Packages</h2>
+            <p class="section-subtitle">No hidden fees, no long-term contracts. Choose the level of care your vehicle needs.</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- The Check-In -->
+            <div class="pricing-card fade-up">
+                <h3>The Check-In</h3>
+                <p style="color: var(--text-muted); font-size: 0.82rem; min-height: 40px;">Monthly peace of mind</p>
+                <div class="pricing-amount">€65 <span>/ mo</span></div>
+                <div class="pricing-period">Starting from</div>
+                <ul class="pricing-features">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Visual inspection</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fluid levels check</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tire pressure calibration</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Digital health report</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Get Started</a>
+            </div>
 
-        <div style="line-height: 1.8; color: #333;">
-            <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Professional Car Care Services for Expats in Portugal</h3>
-            <p style="margin-bottom: 1rem;">
-                Portugal CarCare Concierge is a specialized automotive service provider dedicated to serving the expat community in Portugal. We offer comprehensive car maintenance, preservation, and legalization services across Lisbon, Cascais, Estoril, Setúbal, Comporta and surrounding areas. Our mission is to ensure your vehicle remains in optimal condition, whether you're away for extended periods or need assistance navigating Portugal's automotive regulations.
-            </p>
+            <!-- Active Care -->
+            <div class="pricing-card featured fade-up">
+                <div class="pricing-badge">Most Popular</div>
+                <h3>Active Care</h3>
+                <p style="color: var(--text-muted); font-size: 0.82rem; min-height: 40px;">For extended absences</p>
+                <div class="pricing-amount">€145 <span>/ mo</span></div>
+                <div class="pricing-period">Starting from</div>
+                <ul class="pricing-features">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Everything in Check-In</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Bi-weekly engine starts</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 20-min conditioning drive</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Battery maintenance</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Basic exterior wash</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
 
-            <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Our Services Include:</h3>
-            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+            <!-- The Legalizer -->
+            <div class="pricing-card fade-up">
+                <h3>The Legalizer</h3>
+                <p style="color: var(--text-muted); font-size: 0.82rem; min-height: 40px;">Full import management</p>
+                <div class="pricing-amount">€450<span>*</span></div>
+                <div class="pricing-period">Starting from</div>
+                <ul class="pricing-features">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> DAV registration</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> COC documentation</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> IPO Type B inspection</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ISV tax calculation</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> License plate delivery</li>
+                </ul>
+                <a href="#contact" class="btn btn-outline">Get Started</a>
+            </div>
+
+        </div>
+        <p class="pricing-note">*Fees do not include official ISV/IUC taxes or IMT charges. Multi-vehicle discounts available.</p>
+    </div>
+</section>
+
+
+<!-- Compliance / Tax -->
+<section class="compliance" id="compliance">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">Regulatory Intelligence</div>
+            <h2 class="section-title">Bureaucracy Simplified</h2>
+            <p class="section-subtitle">Portugal's automotive tax landscape is shifting. We ensure you stay compliant and benefit from every reform.</p>
+        </div>
+        <div class="compliance-content fade-up">
+            <div class="compliance-text">
+                <h3>2025 ISV Reform</h3>
+                <p>Reductions of up to 60% on used EU imports under the new Table D rules. Eligible PHEVs receive up to 75% discounts on registration tax.</p>
+
+                <h3>2026-2027 IUC Calendar Shift</h3>
+                <p>The IUC payment date is consolidating from the month of registration to a single national deadline. This creates a potential "double payment" scenario for owners transitioning between systems.</p>
+                <ul>
+                    <li><strong>2026:</strong> Deadline moves to 28 February. Two installments available if over €100.</li>
+                    <li><strong>2027:</strong> Final alignment to 30 April. Three installments available if over €500.</li>
+                </ul>
+
+                <h3>We Manage It For You</h3>
+                <p>Our Bureaucracy Managed package handles Finanças portal payments, deadline tracking, and ISV optimization so you never miss a date or overpay a tax.</p>
+            </div>
+            <div>
+                <div class="iuc-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Deadline</th>
+                                <th>Installments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="year-badge">2025</span></td>
+                                <td>Month of Registration</td>
+                                <td>Single payment</td>
+                            </tr>
+                            <tr>
+                                <td><span class="year-badge">2026</span></td>
+                                <td>28 February</td>
+                                <td>2x if &gt;€100 (Feb / Oct)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="year-badge">2027</span></td>
+                                <td>30 April</td>
+                                <td>3x if &gt;€500 (Apr / Jul / Oct)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <p><strong>Double Payment Alert:</strong> If you paid IUC in late 2025, you may be required to pay again by February 28, 2026. Contact us for a free compliance check.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-label">Common Questions</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list fade-up">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Do you handle car storage for expats who travel frequently?
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes, our preservation protocol is specifically designed for expats who leave Portugal for extended periods. We provide battery maintenance, mechanical cycling, and regular inspections to ensure your car is ready when you return. You receive digital health reports with photos throughout your absence.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Can you help import my car to Portugal?
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Absolutely. Our Legalizer package handles all aspects of vehicle importation including DAV registration, COC documentation, ISV tax calculations, IPO Type B inspections, and final Portuguese license plate delivery. We manage the entire process end-to-end.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    What is IPO and how often is it required?
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">IPO (Inspeção Periódica Obrigatória) is Portugal's mandatory vehicle inspection. New cars require inspection after 4 years, then every 2 years until 8 years old, then annually. We handle the entire process including pre-checks for Type 1 and Type 2 defects, transport to the inspection center, and certification.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Do you work with all car makes and models?
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes, we service all vehicle types including gasoline, diesel, hybrid (PHEV), and electric vehicles (EVs). We're experienced with European, American, and Asian automotive brands. Our team is trained on the specific maintenance requirements of each vehicle type.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    What areas do you cover?
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We provide mobile automotive concierge services throughout Lisbon, Cascais, Estoril, Setúbal, Comporta and surrounding areas. Our team travels to your location, whether it's a private villa, apartment garage, or commercial parking facility, with flexible scheduling.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    What happens during the 2026 IUC transition?
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">The IUC payment deadline is moving from the month of registration to a unified February 28 deadline in 2026, then to April 30 in 2027. This may create a "double payment" scenario for some owners. We proactively manage your Finanças portal reminders and handle payments to avoid penalties.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-layout">
+            <div class="contact-info fade-up">
+                <div class="section-label">Get in Touch</div>
+                <h3>Request a Care Plan</h3>
+                <p>Tell us about your situation and we'll respond within 24 hours with a tailored recommendation. Whether you've just arrived, need ongoing care, or face a looming deadline, we're here to help.</p>
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Lisbon, Cascais, Estoril, Setúbal & Comporta
+                    </div>
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Response within 24 hours
+                    </div>
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        100% English communication
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form fade-up" action="https://formspree.io/f/xbdknbwn" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="location">Vehicle Location</label>
+                    <select id="location" name="location" required>
+                        <option value="" disabled selected>Select your area</option>
+                        <option value="Lisbon">Lisbon</option>
+                        <option value="Cascais">Cascais</option>
+                        <option value="Estoril">Estoril</option>
+                        <option value="Setúbal">Setúbal</option>
+                        <option value="Comporta">Comporta</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">How can we help your car?</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your vehicle and what you need..."></textarea>
+                </div>
+                <input type="hidden" name="_subject" value="New CarCare Inquiry">
+                <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- About / SEO Content -->
+<section class="about-seo" id="about">
+    <div class="about-seo-inner">
+        <article>
+            <h2>About Portugal CarCare Concierge</h2>
+
+            <h3>Professional Car Care Services for Expats in Portugal</h3>
+            <p>Portugal CarCare Concierge is a specialized automotive service provider dedicated to serving the expat community in Portugal. We offer comprehensive car maintenance, preservation, and legalization services across Lisbon, Cascais, Estoril, Setúbal, Comporta and surrounding areas. Our mission is to ensure your vehicle remains in optimal condition, whether you're away for extended periods or need assistance navigating Portugal's automotive regulations.</p>
+
+            <h3>Our Services Include:</h3>
+            <ul>
                 <li><strong>Visual Inspection Services:</strong> Comprehensive visual inspection of your vehicle including fluid levels check, tire pressure monitoring, and detailed digital health reports sent directly to you</li>
                 <li><strong>Battery Management & Maintenance:</strong> Professional trickle charging for indoor storage and high-capacity lithium battery reanimation for remote garages to prevent discharge during storage periods</li>
                 <li><strong>Tire Health & Tyre Pressure Management:</strong> Regular PSI calibration, tire pressure monitoring, and periodic rotation to prevent flat-spotting and UV damage from Portugal's intense sunlight</li>
                 <li><strong>Mechanical Cycling Services:</strong> Bi-weekly engine starts with full thermodynamic stabilization, reaching full operating temperature to dissipate moisture and preserve engine seals</li>
-                <li><strong>IPO Inspection Liaison:</strong> Complete IPO (Inspeção Periódica Obrigatória) pre-check for fails, transport to inspection center, and full certification assistance</li>
                 <li><strong>Full Import Management & Vehicle Legalization:</strong> Complete DAV registration, COC documentation, IPO Type B inspections, and Portuguese license plate delivery for imported vehicles</li>
                 <li><strong>Digital Health Reports:</strong> Comprehensive photo documentation and digital reporting for all inspection and maintenance services</li>
             </ul>
 
-            <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Service Areas</h3>
-            <p style="margin-bottom: 1rem;">
-                We provide mobile automotive concierge services throughout <strong>Lisbon</strong>, <strong>Cascais</strong>, <strong>Estoril</strong>, <strong>Setúbal</strong>, <strong>Comporta</strong> and surrounding areas. All of our services are available across these regions, including visual inspections, battery management, tire health maintenance, mechanical cycling, IPO inspection assistance, and complete vehicle import legalization. Our team travels to your location with flexible scheduling to accommodate your needs.
-            </p>
+            <h3>Service Areas</h3>
+            <p>We provide mobile automotive concierge services throughout <strong>Lisbon</strong>, <strong>Cascais</strong>, <strong>Estoril</strong>, <strong>Setúbal</strong>, <strong>Comporta</strong> and surrounding areas. All of our services are available across these regions, including visual inspections, battery management, tire health maintenance, mechanical cycling, IPO inspection assistance, and complete vehicle import legalization. Our team travels to your location with flexible scheduling to accommodate your needs.</p>
 
-            <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Pricing & Packages</h3>
-            <p style="margin-bottom: 1rem;">
-                Our transparent pricing structure starts from €65 per month for basic check-in services, €145 per month for active care with bi-weekly drives, €95 for IPO inspection liaison, and from €450 for complete vehicle legalization services. All prices exclude official Portuguese government taxes such as ISV (Imposto Sobre Veículos) and IUC (Imposto Único de Circulação).
-            </p>
+            <h3>Pricing & Packages</h3>
+            <p>Our transparent pricing structure starts from €65 per month for basic check-in services, €145 per month for active care with bi-weekly drives, and from €450 for complete vehicle legalization services. All prices exclude official Portuguese government taxes such as ISV (Imposto Sobre Veículos) and IUC (Imposto Único de Circulação).</p>
 
-            <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Why Choose Portugal CarCare?</h3>
-            <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+            <h3>Why Choose Portugal CarCare?</h3>
+            <ul>
                 <li>Specialized expertise in Portuguese automotive regulations and tax law (2025/2026 ISV reforms, IUC updates)</li>
                 <li>English-speaking service team familiar with expat needs</li>
                 <li>Digital health reports and photo documentation</li>
                 <li>Flexible monthly packages with no long-term contracts</li>
                 <li>Comprehensive knowledge of PHEV benefits and electric vehicle incentives in Portugal</li>
+                <li>Mobile white-glove service that comes to your location</li>
             </ul>
 
-            <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Common Questions About Our Services</h3>
-            <p style="margin-bottom: 1rem;">
-                <strong>Q: Do you handle car storage for expats who travel frequently?</strong><br>
-                A: Yes, our preservation protocol is specifically designed for expats who leave Portugal for extended periods. We provide battery maintenance, mechanical cycling, and regular inspections to ensure your car is ready when you return.
-            </p>
-            <p style="margin-bottom: 1rem;">
-                <strong>Q: Can you help import my car to Portugal?</strong><br>
-                A: Absolutely. Our Legalizer package handles all aspects of vehicle importation including DAV registration, COC documentation, ISV tax calculations, IPO Type B inspections, and final Portuguese license plate delivery.
-            </p>
-            <p style="margin-bottom: 1rem;">
-                <strong>Q: What is IPO and how often is it required?</strong><br>
-                A: IPO (Inspeção Periódica Obrigatória) is Portugal's mandatory vehicle inspection. New cars require inspection after 4 years, then every 2 years until 8 years old, then annually. We handle the entire process including pre-checks and transportation.
-            </p>
-            <p style="margin-bottom: 1rem;">
-                <strong>Q: Do you work with all car makes and models?</strong><br>
-                A: Yes, we service all vehicle types including gasoline, diesel, hybrid (PHEV), and electric vehicles (EVs). We're experienced with European, American, and Asian automotive brands.
-            </p>
+            <h3>Common Questions About Our Services</h3>
+            <p><strong>Q: Do you handle car storage for expats who travel frequently?</strong><br>A: Yes, our preservation protocol is specifically designed for expats who leave Portugal for extended periods. We provide battery maintenance, mechanical cycling, and regular inspections to ensure your car is ready when you return.</p>
+            <p><strong>Q: Can you help import my car to Portugal?</strong><br>A: Absolutely. Our Legalizer package handles all aspects of vehicle importation including DAV registration, COC documentation, ISV tax calculations, IPO Type B inspections, and final Portuguese license plate delivery.</p>
+            <p><strong>Q: What is IPO and how often is it required?</strong><br>A: IPO (Inspeção Periódica Obrigatória) is Portugal's mandatory vehicle inspection. New cars require inspection after 4 years, then every 2 years until 8 years old, then annually. We handle the entire process including pre-checks and transportation.</p>
+            <p><strong>Q: Do you work with all car makes and models?</strong><br>A: Yes, we service all vehicle types including gasoline, diesel, hybrid (PHEV), and electric vehicles (EVs). We're experienced with European, American, and Asian automotive brands.</p>
 
-            <h3 style="color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">Get Started Today</h3>
-            <p style="margin-bottom: 1rem;">
-                To schedule an inspection or inquire about our services, use our contact form above. We typically respond within 24 hours and can accommodate urgent requests for expats arriving in Portugal or preparing for IPO deadlines. Whether you need ongoing vehicle preservation during extended travel or help navigating Portugal's vehicle import process, we're here to provide peace of mind for your automotive needs.
-            </p>
-        </div>
-    </article>
+            <h3>Get Started Today</h3>
+            <p>To schedule an inspection or inquire about our services, use our contact form above. We typically respond within 24 hours and can accommodate urgent requests for expats arriving in Portugal or preparing for IPO deadlines. Whether you need ongoing vehicle preservation during extended travel or help navigating Portugal's vehicle import process, we're here to provide peace of mind for your automotive needs.</p>
+        </article>
+    </div>
 </section>
 
+<!-- Footer -->
 <footer role="contentinfo">
-    <p>&copy; 2026 Portugal CarCare Concierge. All rights reserved.</p>
-    <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.7;">*Fees do not include official ISV/IUC taxes or IMT charges.</p>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <div class="logo">PORTUGAL<span>CARCARE</span></div>
+            <p>Professional automotive concierge services for the expat community in Portugal. Vehicle preservation, legalization, and compliance management.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#pricing">The Check-In</a>
+            <a href="#pricing">Active Care</a>
+            <a href="#pricing">The Legalizer</a>
+        </div>
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="#compliance">Tax Guide 2026</a>
+            <a href="#faq">FAQ</a>
+            <a href="#about">About Us</a>
+        </div>
+        <div class="footer-col">
+            <h4>Service Areas</h4>
+            <a href="#contact">Lisbon</a>
+            <a href="#contact">Cascais</a>
+            <a href="#contact">Estoril</a>
+            <a href="#contact">Setúbal</a>
+            <a href="#contact">Comporta</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Portugal CarCare Concierge. All rights reserved.</p>
+        <p>*Fees do not include official ISV/IUC taxes or IMT charges.</p>
+    </div>
 </footer>
+
+<!-- WhatsApp Sticky Button (hidden for now)
+<a href="https://wa.me/351000000000" class="whatsapp-sticky" aria-label="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+-->
+
+<!-- JavaScript -->
+<script>
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.parentElement;
+                var isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('active'); });
+                if (!isActive) item.classList.add('active');
+                this.setAttribute('aria-expanded', !isActive);
+            });
+        });
+
+        // Form submission
+        var form = document.querySelector('.contact-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(form);
+            var submitButton = form.querySelector('button[type="submit"]');
+            var originalText = submitButton.textContent;
+
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    window.location.href = 'thank-you.html';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(function() {
+                alert('Oops! There was a problem submitting your form. Please try again.');
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

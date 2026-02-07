@@ -28,14 +28,22 @@
     <link rel="manifest" href="favicon_io/site.webmanifest">
 
     <title>Message Sent | Portugal CarCare</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     <style>
         :root {
             --primary: #1a2a44;
+            --primary-light: #243656;
             --secondary: #c5a059;
+            --secondary-light: #d4b170;
             --light: #f8f9fa;
             --dark: #121b2b;
+            --text-muted: #6b7a90;
+            --surface: #ffffff;
+            --radius: 16px;
+            --radius-sm: 8px;
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.1);
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -45,30 +53,34 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
             color: var(--dark);
             background-color: var(--light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            -webkit-font-smoothing: antialiased;
         }
 
         header {
             background: var(--primary);
             color: white;
-            padding: 1rem 5%;
+            padding: 0 5%;
+            height: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -1px;
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: white;
         }
-
         .logo span { color: var(--secondary); }
 
         .confirmation {
@@ -81,54 +93,78 @@
         }
 
         .confirmation-box {
-            background: white;
-            padding: 4rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 500px;
+            background: var(--surface);
+            padding: 4rem 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            max-width: 520px;
+            width: 100%;
         }
 
         .checkmark {
-            width: 80px;
-            height: 80px;
-            background: var(--secondary);
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 2rem;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .checkmark svg {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             stroke: white;
             stroke-width: 3;
         }
 
         .confirmation-box h1 {
             color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.5px;
         }
 
         .confirmation-box p {
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .btn {
             background: var(--secondary);
             color: var(--primary);
-            padding: 1rem 2.5rem;
+            padding: 0.9rem 2rem;
             text-decoration: none;
-            font-weight: 700;
-            border-radius: 4px;
-            transition: 0.3s;
-            display: inline-block;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
         }
 
-        .btn:hover { background: #d4b170; }
+        .btn:hover {
+            background: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
 
         footer {
             background: var(--dark);
@@ -136,12 +172,26 @@
             padding: 2rem 5%;
             text-align: center;
         }
+
+        footer p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            .confirmation-box {
+                padding: 3rem 1.5rem;
+            }
+            .confirmation-box h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">PORTUGAL<span>CARCARE</span></div>
+    <a href="index.html" class="logo">PORTUGAL<span>CARCARE</span></a>
 </header>
 
 <section class="confirmation">
@@ -152,8 +202,11 @@
             </svg>
         </div>
         <h1>Message Received</h1>
-        <p>Thank you for reaching out. We'll review your inquiry and get back to you within 24 hours.</p>
-        <a href="index.html" class="btn">Back to Home</a>
+        <p>Thank you for reaching out. We'll review your inquiry and get back to you within 24 hours with a tailored recommendation for your vehicle.</p>
+        <a href="index.html" class="btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Home
+        </a>
     </div>
 </section>
 
